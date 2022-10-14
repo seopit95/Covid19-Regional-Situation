@@ -354,7 +354,7 @@ public class CovidMain {
 			message = "번호를 다시 입력해주세요 (1~9)";
 			break;
 		case REGION:
-			pattern = "^[가-힣]{2,5}$";
+			pattern = "^[가-힣]{3,5}$";
 			message = "지역을 다시 입력해주세요 (3~5자 이내)";
 			break;
 		case PERSON:
