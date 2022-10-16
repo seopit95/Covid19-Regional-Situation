@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class CovidMain {
 	public static final int DATAINPUT = 1, DATAUPDATE = 2, DATADELETE = 3, DATASEARCH = 4;
-	public static final int DATAOUTPUT = 5, DATASORT = 6, DATASTATS = 7, INOCULATION = 8, EXIT = 9 ;
+	public static final int DATAOUTPUT = 5, DATASORT = 6, DATASTATS = 7, EXIT = 8 ;
 	public static Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
@@ -42,9 +42,6 @@ public class CovidMain {
 			case DATASTATS :
 				covidDataStats();
 				break;
-//			case INOCULATION :
-//				covidInoculation();
-//				break;
 			case EXIT :
 				System.out.println("Covid 시스템 종료");
 				loopflag = true;
@@ -54,22 +51,6 @@ public class CovidMain {
 			}
 		}
 	}
-
-//	private static void covidInoculation() {
-//		try {
-//			DBConnection dbConnection = new DBConnection();
-//			dbConnection.connect();
-//			
-//			System.out.println("4차 예방접종자 수 >>");
-//			int inoculNum = sc.nextInt(); 
-//			
-//			String inoculationReturnValue = dbConnection.selectInoculation(inoculNum);
-//			
-//			dbConnection.close();
-//		}catch(InputMismatchException e) {
-//			System.out.println("Inoculation Error. " + e.getMessage() );
-//		}
-//	}
 
 
 	//통계
@@ -194,7 +175,7 @@ public class CovidMain {
 		}
 		
 		Covid savedCovid = list.get(0);
-		System.out.println("수정할 확진자 수 : " + savedCovid.getConfirmed() + ">>");
+		System.out.print("수정할 확진자 수 : " + savedCovid.getConfirmed() + ">>");
 		int confirmed = sc.nextInt();
 		value = checkInputPattern(String.valueOf(confirmed), 3);
 		if(!value) {
@@ -202,7 +183,7 @@ public class CovidMain {
 		}
 		savedCovid.setConfirmed(confirmed);
 		
-		System.out.println("수정할 사망자 수 : " + savedCovid.getDeath() + ">>");
+		System.out.print("수정할 사망자 수 : " + savedCovid.getDeath() + ">>");
 		int death = sc.nextInt();
 		value = checkInputPattern(String.valueOf(death), 3);
 		if(!value) {
@@ -311,7 +292,7 @@ public class CovidMain {
 			if(insertReturnValue == -1) {
 				System.out.println("입력 실패입니다.");
 			}else {
-				System.out.println("입력되었습니다. (리턴값: " + insertReturnValue + ")");
+				System.out.println("지역정보가 입력되었습니다.");
 			}
 			dbConnection.close();
 		}catch(InputMismatchException e) {
@@ -320,13 +301,12 @@ public class CovidMain {
 	}
 
 	//메뉴
-	//메뉴
 	private static int displayMenu() {
 		int num = -1;
 		try {
-			System.out.println(" ---------------------------------------------------");
-			System.out.println("| 1.입력 2.수정 3.삭제 4.검색 5.출력 6.정렬 7.통계 8.4차 예방접종률 9.종료 |");
-			System.out.print(" ---------------------------------------------------\n>>");
+			System.out.println(" ---------------------------------------------");
+			System.out.println("| 1.입력 2.수정 3.삭제 4.검색 5.출력 6.정렬 7.통계 8.종료 |");
+			System.out.print(" ---------------------------------------------\n>>");
 			num = sc.nextInt();
 			//패턴적용
 			boolean value = checkInputPattern(String.valueOf(num), 1);
@@ -374,5 +354,4 @@ public class CovidMain {
 		}
 		return regex;
 	}
-
 }
