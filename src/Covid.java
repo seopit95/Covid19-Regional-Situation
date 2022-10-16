@@ -12,26 +12,12 @@ public class Covid implements Comparable<Covid>, Serializable{
 	private	double deathPercentage; // 전국 사망자 비율 
 	private String rating; // 해당 지역 감염 위험도
 	private int ranking; //순위
-	private double inoculation;
 	
 	//생성자
 	public Covid(String region, int confirmed, int death) {
 		this(region, confirmed, death, 0.0, 0.0, null, 0);
 	}
 	
-	public Covid(String region, double conPercentage, double inoculation) {
-		super();
-		this.region = region;
-		this.conPercentage = conPercentage;
-		this.inoculation = inoculation;
-	}
-	
-	public Covid(String region, double inoculation) {
-		super();
-		this.region = region;
-		this.inoculation = inoculation;
-	}
-
 	public Covid(String region, int confirmed, int death, double conPercentage, double deathPercentage, String rating,
 			int ranking) {
 		super();
@@ -44,18 +30,6 @@ public class Covid implements Comparable<Covid>, Serializable{
 		this.ranking = ranking;
 	}
 
-	public Covid(String region, int confirmed, int death, double conPercentage, double deathPercentage, String rating,
-			int ranking, double inoculation) {
-		super();
-		this.region = region;
-		this.confirmed = confirmed;
-		this.death = death;
-		this.conPercentage = conPercentage;
-		this.deathPercentage = deathPercentage;
-		this.rating = rating;
-		this.ranking = ranking;
-		this.inoculation = inoculation;
-	}
 
 	//메소드 (hashcode, equals, compared)
 	public String getRegion() {
@@ -113,14 +87,6 @@ public class Covid implements Comparable<Covid>, Serializable{
 	public void setranking(int ranking) {
 		this.ranking = ranking;
 	}
-	
-	public double getInoculation() {
-		return inoculation;
-	}
-
-	public void setInoculation(double inoculation) {
-		this.inoculation = inoculation;
-	}
 
 	@Override
 	public int hashCode() {
@@ -142,7 +108,6 @@ public class Covid implements Comparable<Covid>, Serializable{
 	public String toString() {
 		return region + "\t" + confirmed + "\t\t" + death + "\t\t"
 				+ conPercentage + "%" + "\t\t" + deathPercentage + "%" + "\t\t" + rating + "\t"
-				+ ranking + "\t" + inoculation;
+				+ ranking;
 	}
-
 }
